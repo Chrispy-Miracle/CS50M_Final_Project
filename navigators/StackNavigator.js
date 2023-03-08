@@ -1,4 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { Ionicons } from 'react-native-vector-icons';
 
 import { IconHeader } from '../components/IconHeader';
 import { Home } from '../screens/Home';
@@ -12,7 +13,7 @@ export const StackNavigator = () => {
         <Stack.Navigator
             initialRouteName='Home'
             screenOptions={{
-                headerTintColor: "orange",
+                headerTintColor: '#e1f4d3',
                 headerStyle: {
                     backgroundColor: 'teal',
                 }
@@ -26,11 +27,11 @@ export const StackNavigator = () => {
                 }}
             />
             <Stack.Screen
-                name="TabNavigator"
+                name="Choose a Picture"
                 component={TabNavigator} 
-                // options={{
-                //     headerTitle: () => (<IconHeader iconName='home' text='NewPage' color='#e1f4d3' />)
-                // }}
+                options={{
+                    headerTitle: () => (<IconHeader iconName='camera' text='Take or Choose Pic' color='#e1f4d3' />)
+                }}
             />
         </Stack.Navigator>
     )
