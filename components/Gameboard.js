@@ -1,13 +1,30 @@
 import { View, Image, Text, StyleSheet } from 'react-native';
-
+import { useState } from 'react';
 import { GameRow } from './GameRow';
 
-export const Gameboard = () => {
+export const Gameboard = (props) => {
+    const initialEmptySquare = Math.floor((Math.random() * 8) + 1)
+    const [emptySquare, setEmptySquare] = useState(initialEmptySquare)
+    // TODO create random tile ordering... 
+
+    const rows = ['rowOne', 'rowTwo', 'rowThree']
+
+    const handleTilePress = (id) => {
+        console.log("You pressed gamepiece", id)
+        if (id + 1 === emptySquare || id - 1 === emptySquare || id + 3 === emptySquare || id - 3 === emptySquare) {
+            console.log(`square ${id} is adjacent to empty square`)
+            setEmptySquare(id)
+        }
+        else {
+            alert("Tile not adjacent to empty square!")
+        }
+    }
+
     return (
         <View style={styles.container}>
-            <GameRow />
-            <GameRow />
-            <GameRow />
+            {rows.map((item, key) => (
+                <GameRow id={item} key={item + key} emptySquare={emptySquare} handleTilePress={handleTilePress} image={props.image} />
+            ))}
         </View>
     )
 }

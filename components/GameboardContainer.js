@@ -2,13 +2,13 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { Gameboard } from './Gameboard';
 
-export const GameboardContainer = () => {
+export const GameboardContainer = (props) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Click a tile adjacent to the empty space</Text>
             <Text style={styles.text}> to scoot it into the empty space.</Text>
             <Text style={[styles.text, {fontWeight: 'bold'}]}>(and help get the band back together!)</Text>
-            <Gameboard />
+            <Gameboard image={props.image} />
         </View>
     )
 }

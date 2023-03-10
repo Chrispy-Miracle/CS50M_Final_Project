@@ -2,7 +2,9 @@ import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 
 import { GameboardContainer } from '../components/GameboardContainer';
 
-export const Home = ({navigation}) => {
+export const Home = ({ route, navigation}) => {
+    const { image } = route.params
+    console.log(image)
     return (
     <View style={styles.container}>
         <Pressable style={styles.button} onPress={() => navigation.navigate('Choose a Picture')}>
@@ -10,7 +12,7 @@ export const Home = ({navigation}) => {
         </Pressable>
         <Text>or</Text>
         <Text style={styles.text}>Reorganize the tiles!</Text>
-        <GameboardContainer />
+        <GameboardContainer image={image} />
         
     </View>
     )

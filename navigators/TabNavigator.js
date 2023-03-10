@@ -20,7 +20,7 @@ export const TabNavigator = () => {
         }}
     >
       <Tab.Screen name="Select a Picture" component={SelectPic} />
-      <Tab.Screen name="Take a Photo" component={TakePhoto} getImage={({params}) => params.image}/>
+      <Tab.Screen name="Take a Photo" component={TakePhoto} />
     </Tab.Navigator>
   );
 }

@@ -25,6 +25,7 @@ export const StackNavigator = () => {
                 options={{
                     headerTitle: () => (<IconHeader iconName='home' text='Home' color='#e1f4d3' />)
                 }}
+                initialParams={{ image: ''}}
             />
             <Stack.Screen
                 name="Choose a Picture"
