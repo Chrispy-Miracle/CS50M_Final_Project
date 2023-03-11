@@ -4,7 +4,7 @@ import { GameboardContainer } from '../components/GameboardContainer';
 
 export const Home = ({ route, navigation}) => {
     const { image } = route.params
-    console.log(image)
+    console.log("Home7:", image)
     return (
     <View style={styles.container}>
         <Pressable style={styles.button} onPress={() => navigation.navigate('Choose a Picture')}>

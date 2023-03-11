@@ -3,10 +3,18 @@ import * as ImagePicker from 'expo-image-picker';
 import * as React from 'react';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { manipulateAsync, SaveFormat } from 'expo-image-manipulator';
+
+
+// import { manipAndUseImage } from '../utils/manipAndUseImage';
 
 export const SelectPic = () => {
     // This should actually be done with redux in order to send info to store
-    const [image, setImage] = useState(null) 
+    const [image, setImage] = useState(null)
+    const [imageHeight, setImageHeight] = useState(null)
+    const [imageWidth, setImageWidth] = useState(null)
+
+    const navigation = useNavigation()
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -17,20 +25,51 @@ export const SelectPic = () => {
         })
 
         if (!result.canceled) {
-            console.log(result)
+            setImageHeight(result.assets[0].height) 
+            setImageWidth(result.assets[0].height)
             setImage(result.assets[0].uri)
         }
     }
 
-    const navigation = useNavigation()
-
-    const useImage = () => {
-        
-        console.log('useImage doesnt exist yet')
-        navigation.navigate('Home', { image: image})
+    const manipAndUseImage = async () => {
+        let imgArr = []
+        const croppedImage = await manipulateAsync(
+            image,
+            [
+                { crop: {
+                    height: imageHeight,
+                    width: imageHeight,
+                    originX: 0,
+                    originY: 0
+                }}
+            ],
+        {compress: 1, format: SaveFormat.JPEG }
+        )
+        // divide into 9 images
+        for (let i = 0; i <= 8; i++) {
+            // Top row ? origin 0 else Botttom row ? 2/3 imageheight, otherwise middle ....
+            const originY = i <= 2 ? 0 : i >= 6 ? (imageHeight / 3) * 2 : imageHeight / 3
+            // Right column? 0 : mid column ? 1/3 image width : otherwise 3rd row
+            const originX = i === 0 || i === 3 || i === 6 ? 0 : i === 1 || i === 4 || i === 7 ? imageWidth / 3 : (imageWidth / 3) * 2
+            
+            let manipResult = await manipulateAsync(
+                croppedImage.uri,
+                [   
+                    { crop: {
+                        height: imageHeight / 3 ,
+                        width: imageWidth / 3,
+                        originX: originX, 
+                        originY: originY
+                      }
+                    }
+                ],
+                {compress: 1, format: SaveFormat.JPEG }
+            )
+            imgArr.push(manipResult.uri)
+        }
+        navigation.navigate('Home', { image: imgArr })
     }
-
-    
+   
 
     return (
     <View style={styles.container}>
@@ -40,7 +79,7 @@ export const SelectPic = () => {
         {image && 
             <View>
                 <Image source={{ uri: image }} style={styles.image} />
-                <Pressable style={styles.button} onPress={useImage}>
+                <Pressable style={styles.button} onPress={manipAndUseImage}>
                     <Text style={styles.btnText}>Use this Image</Text>
                 </Pressable>
             </View>
@@ -84,5 +123,5 @@ const styles = StyleSheet.create({
         fontSize: 20, 
         textShadowColor: 'black', 
         textShadowOffset: {width: 2, height: 2}
-    }
+    },
   });

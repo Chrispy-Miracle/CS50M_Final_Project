@@ -21,7 +21,7 @@ export const TakePhoto = () => {
     const navigation = useNavigation()
 
     const useImage = () => {
-        console.log('useImage doesnt exist yet')
+        console.log(image)
         navigation.navigate('Home', { image: image})
     }
 

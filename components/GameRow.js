@@ -19,7 +19,7 @@ export const GameRow = (props) => {
     return (
         <View style={styles.gameRow}>
             {pieceNums.map((item, key) => (
-                <GamePiece id={item} key={key} emptySquare={props.emptySquare} handleTilePress={props.handleTilePress} image={props.image} />
+                <GamePiece id={item} key={key} emptySquare={props.emptySquare} handleTilePress={props.handleTilePress} image={props.image[item - 1]} />
             ))}
         </View>
     )
