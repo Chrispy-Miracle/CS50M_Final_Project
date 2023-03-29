@@ -12,7 +12,6 @@ export const Gameboard = (props) => {
     const handleTilePress = (id) => {
         console.log("You pressed gamepiece", id)
         if (id + 1 === emptySquare || id - 1 === emptySquare || id + 3 === emptySquare || id - 3 === emptySquare) {
-            console.log(`square ${id} is adjacent to empty square`)
             setEmptySquare(id)
         }
         else {

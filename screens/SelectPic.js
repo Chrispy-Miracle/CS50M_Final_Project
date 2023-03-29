@@ -6,8 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 import { manipulateAsync, SaveFormat } from 'expo-image-manipulator';
 
 
-// import { manipAndUseImage } from '../utils/manipAndUseImage';
-
 export const SelectPic = () => {
     // This should actually be done with redux in order to send info to store
     const [image, setImage] = useState(null)
@@ -25,6 +23,7 @@ export const SelectPic = () => {
         })
 
         if (!result.canceled) {
+            // TODO create caviat for if height or width is larger
             setImageHeight(result.assets[0].height) 
             setImageWidth(result.assets[0].height)
             setImage(result.assets[0].uri)
@@ -67,6 +66,7 @@ export const SelectPic = () => {
             )
             imgArr.push(manipResult.uri)
         }
+        console.log(imgArr)
         navigation.navigate('Home', { image: imgArr })
     }
    

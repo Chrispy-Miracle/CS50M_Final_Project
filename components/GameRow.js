@@ -1,8 +1,12 @@
 import { View, StyleSheet } from 'react-native';
 
+
 import { GamePiece } from './GamePiece'
 
+
+
 export const GameRow = (props) => {
+   
     let pieceNums = []
     switch (props.id) {
         case 'rowOne':
@@ -19,7 +23,7 @@ export const GameRow = (props) => {
     return (
         <View style={styles.gameRow}>
             {pieceNums.map((item, key) => (
-                <GamePiece id={item} key={key} emptySquare={props.emptySquare} handleTilePress={props.handleTilePress} image={props.image[item - 1]} />
+                <GamePiece id={item} key={key} emptySquare={props.emptySquare} handleTilePress={props.handleTilePress} image={props.image.length === 9 ? props.image[item - 1] : props.image} />
             ))}
         </View>
     )

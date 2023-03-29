@@ -36,5 +36,6 @@ export const manipAndUseImage = async (image, imageHeight, imageWidth) => {
         )
         imgArr.push(manipResult.uri)
     }
-    navigation.navigate('Home', { image: imgArr })
+    return imgArr
+    // navigation.navigate('Home', { image: imgArr })
 }

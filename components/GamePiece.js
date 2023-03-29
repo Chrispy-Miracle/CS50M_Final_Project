@@ -1,9 +1,8 @@
 
 import { View, ImageBackground, Text, StyleSheet, Pressable } from 'react-native';
-import { useState } from 'react';
 
 export const GamePiece = (props) => {
-    const img = props.image ? { uri: props.image } : require('../assets/icon.png')
+    const img = props.image ? { uri: props.image } : require('../assets/pherkad.jpg')
     const handleBadPress = () => {
         alert('Please press a square adjacent to empty square to move tiles')
     }
