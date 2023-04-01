@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from 'react-native-vector-icons';
 
 import { IconHeader } from '../components/IconHeader';
+import { StartGame } from '../screens/StartGame';
 import { Home } from '../screens/Home';
 import { TabNavigator } from '../navigators/TabNavigator';
 
@@ -11,7 +12,7 @@ export const StackNavigator = () => {
     
     return (
         <Stack.Navigator
-            initialRouteName='Home'
+            initialRouteName='Start a Game'
             screenOptions={{
                 headerTintColor: '#e1f4d3',
                 headerStyle: {
@@ -19,6 +20,14 @@ export const StackNavigator = () => {
                 }
             }}
         >
+            <Stack.Screen
+                name="Start a Game"
+                component={StartGame} 
+                options={{
+                    headerTitle: () => (<IconHeader iconName='ios-apps-sharp' text='Tile Game' color='#e1f4d3' />)
+                }}
+                initialParams={{ image: ''}}
+            />            
             <Stack.Screen
                 name="Home"
                 component={Home} 

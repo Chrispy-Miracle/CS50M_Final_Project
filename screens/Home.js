@@ -1,12 +1,9 @@
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 
 import { GameboardContainer } from '../components/GameboardContainer';
-import { manipAndUseImage } from '../utils/manipAndUseImage';
 
 export const Home = ({ route, navigation}) => {
     const { image } = route.params 
-    const bandImgSource = Image.resolveAssetSource(require('../assets/pherkad.jpg'))  // has uri,height and width
-
 
     return (
     <View style={styles.container}>
@@ -16,7 +13,6 @@ export const Home = ({ route, navigation}) => {
         <Text>or</Text>
         <Text style={styles.text}>Reorganize the tiles!</Text>
         <GameboardContainer image={image} />
-        
     </View>
     )
 }
