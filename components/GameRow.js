@@ -7,23 +7,35 @@ import { GamePiece } from './GamePiece'
 
 export const GameRow = (props) => {
    
-    let pieceNums = []
+    // let pieceNums = []
+    // let usedNums = []
+
+    // Math.floor((Math.random() * 8) + 1)
     switch (props.id) {
         case 'rowOne':
-            pieceNums = [1, 2, 3]
+            pieceNums = props.orderOfTiles.slice(0, 3)
             break
         case 'rowTwo':
-            pieceNums = [4, 5, 6]
+            pieceNums = props.orderOfTiles.slice(3, 6)
             break
         case 'rowThree':
-            pieceNums = [7, 8, 9] 
+            pieceNums = props.orderOfTiles.slice(6, 9)
             break                           
     }
 
     return (
         <View style={styles.gameRow}>
-            {pieceNums.map((item, key) => (
-                <GamePiece id={item} key={key} emptySquare={props.emptySquare} handleTilePress={props.handleTilePress} image={props.image.length === 9 ? props.image[item - 1] : props.image} />
+            {pieceNums.map((item, index) => (
+                <GamePiece 
+                    id={item}
+                    key={props.id + index}
+                    row={props.id}
+                    index={index}
+                    emptySquare={props.emptySquare}
+                    orderOfTiles={props.orderOfTiles}
+                    handleTilePress={props.handleTilePress}
+                    image={props.image[item - 1]} // : props.image}
+                />
             ))}
         </View>
     )

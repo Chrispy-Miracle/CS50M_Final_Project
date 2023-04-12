@@ -7,8 +7,8 @@ export const GamePiece = (props) => {
         alert('Please press a square adjacent to empty square to move tiles')
     }
 
-    
-    if (props.emptySquare === props.id) {
+    console.log(props.id, ": ", props.row, props.index)
+    if (props.emptySquare === props.orderOfTiles.indexOf(props.id)) {
         return (
             <Pressable onPress={handleBadPress} >
                 <View style={[styles.image, { backgroundColor: 'black'}]}></View>

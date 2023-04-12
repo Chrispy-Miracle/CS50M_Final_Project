@@ -1,28 +1,39 @@
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { useState } from 'react';
+
 import { GameRow } from './GameRow';
+import { randArrOfNine } from '../utils/randArrOfNine';
 
 export const Gameboard = (props) => {
     const initialEmptySquare = Math.floor((Math.random() * 8) + 1)
     const [emptySquare, setEmptySquare] = useState(initialEmptySquare)
     // TODO create random tile ordering... 
+    const [orderOfTiles, setOrderOfTiles] = useState(randArrOfNine())
 
     const rows = ['rowOne', 'rowTwo', 'rowThree']
 
     const handleTilePress = (id) => {
         console.log("You pressed gamepiece", id)
-        if (id + 1 === emptySquare || id - 1 === emptySquare || id + 3 === emptySquare || id - 3 === emptySquare) {
-            setEmptySquare(id)
+        if (orderOfTiles.indexOf(id) + 1 === emptySquare || orderOfTiles.indexOf(id) - 1 === emptySquare || orderOfTiles.indexOf(id) + 3 === emptySquare || orderOfTiles.indexOf(id) - 3 === emptySquare) {
+            
+            console.log(`Tile (${orderOfTiles.indexOf(id)}) is adjacent to empty square (${emptySquare})!  id=${id}`)
+            setEmptySquare(orderOfTiles.indexOf(id))
         }
         else {
-            alert("Tile not adjacent to empty square!")
+            alert(`Tile (${orderOfTiles.indexOf(id)}) not adjacent to empty square (${emptySquare})!  id=${id}`)
         }
     }
 
     return (
         <View style={styles.container}>
             {rows.map((item, key) => (
-                <GameRow id={item} key={item + key} emptySquare={emptySquare} handleTilePress={handleTilePress} image={props.image} />
+                <GameRow 
+                    id={item}
+                    key={item + key}
+                    emptySquare={emptySquare}
+                    handleTilePress={handleTilePress}
+                    image={props.image}
+                    orderOfTiles={orderOfTiles}/>
             ))}
         </View>
     )
