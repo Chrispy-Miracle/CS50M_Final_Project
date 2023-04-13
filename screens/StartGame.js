@@ -3,9 +3,8 @@ import { Image, View, Pressable, Text, StyleSheet } from 'react-native'
 import { manipulateAsync, SaveFormat } from 'expo-image-manipulator';
 
 export const StartGame = ({ navigation }) => {
-
     const bandImgSource = Image.resolveAssetSource(require('../assets/pherkad.jpg'))  // has uri,height and width
-    console.log("Home 10:", bandImgSource.uri, bandImgSource.height)
+    
     const manipAndUseImage = async () => {
         let imgArr = []
         const croppedImage = await manipulateAsync(
@@ -42,12 +41,9 @@ export const StartGame = ({ navigation }) => {
             )
             imgArr.push(manipResult.uri)
         }
-        console.log(imgArr)
         navigation.navigate('Home', {image: imgArr})
     }
        
-
-
 
     return (
         <View style={styles.container}>

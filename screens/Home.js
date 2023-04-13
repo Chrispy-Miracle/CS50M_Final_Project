@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 
 import { GameboardContainer } from '../components/GameboardContainer';
 
@@ -6,14 +6,14 @@ export const Home = ({ route, navigation}) => {
     const { image } = route.params 
 
     return (
-    <View style={styles.container}>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Choose a Picture')}>
-            <Text style={styles.btnText}>Choose a Different Picture</Text>
-        </Pressable>
-        <Text>or</Text>
-        <Text style={styles.text}>Reorganize the tiles!</Text>
-        <GameboardContainer image={image} />
-    </View>
+        <View style={styles.container}>
+            <Pressable style={styles.button} onPress={() => navigation.navigate('Choose a Picture')}>
+                <Text style={styles.btnText}>Choose a Different Picture</Text>
+            </Pressable>
+            <Text>or</Text>
+            <Text style={styles.text}>Reorganize the tiles!</Text>
+            <GameboardContainer image={image} />
+        </View>
     )
 }
 

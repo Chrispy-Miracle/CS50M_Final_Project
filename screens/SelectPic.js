@@ -66,7 +66,6 @@ export const SelectPic = () => {
             )
             imgArr.push(manipResult.uri)
         }
-        console.log("selectPic 69:", imgArr)
         navigation.navigate('Home', { image: imgArr })
     }
    

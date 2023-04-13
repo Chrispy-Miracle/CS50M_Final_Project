@@ -11,7 +11,8 @@ export const TakePhoto = () => {
     const navigation = useNavigation()
     const [image, setImage] = useState(null)
     const [imageHeight, setImageHeight] = useState(null)
-    const [imageWidth, setImageWidth] = useState(null)    
+    const [imageWidth, setImageWidth] = useState(null)   
+    // Could make it use these, (from docs) 
     // const [type, setType] = useState(CameraType.back)
     // const [permission, requestPermission] = Camera.useCameraPermissions()
 
@@ -40,7 +41,6 @@ export const TakePhoto = () => {
             ],
         {compress: 1, format: SaveFormat.JPEG }
         )
-        console.log("cropped", croppedImage)
         // divide into 9 images
         for (let i = 0; i <= 8; i++) {
             // Top row ? origin 0 else Botttom row ? 2/3 imageheight, otherwise middle ....
@@ -65,12 +65,6 @@ export const TakePhoto = () => {
         }
         navigation.navigate('Home', { image: imgArr })
     }
-
-    // const useImage = () => {
-    //     // console.log(image)
-    //     navigation.navigate('Home', { image: image})
-    // }
-
      
     return (
     <View style={styles.container}>

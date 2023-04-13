@@ -1,16 +1,8 @@
 import { View, StyleSheet } from 'react-native';
 
-
 import { GamePiece } from './GamePiece'
 
-
-
 export const GameRow = (props) => {
-   
-    // let pieceNums = []
-    // let usedNums = []
-
-    // Math.floor((Math.random() * 8) + 1)
     switch (props.id) {
         case 'rowOne':
             pieceNums = props.orderOfTiles.slice(0, 3)
@@ -40,6 +32,7 @@ export const GameRow = (props) => {
         </View>
     )
 }
+
 const styles = StyleSheet.create({
     gameRow: {
         flexDirection: 'row',
