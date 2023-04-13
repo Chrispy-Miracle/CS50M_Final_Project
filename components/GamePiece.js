@@ -7,7 +7,7 @@ export const GamePiece = (props) => {
         alert('Please press a square adjacent to empty square to move tiles')
     }
 
-    console.log(props.id, ": ", props.row, props.index)
+    // console.log(props.id, ": ", props.row, props.index)
     if (props.emptySquare === props.orderOfTiles.indexOf(props.id)) {
         return (
             <Pressable onPress={handleBadPress} >

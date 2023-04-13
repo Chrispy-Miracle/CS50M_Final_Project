@@ -17,7 +17,19 @@ export const Gameboard = (props) => {
         if (orderOfTiles.indexOf(id) + 1 === emptySquare || orderOfTiles.indexOf(id) - 1 === emptySquare || orderOfTiles.indexOf(id) + 3 === emptySquare || orderOfTiles.indexOf(id) - 3 === emptySquare) {
             
             console.log(`Tile (${orderOfTiles.indexOf(id)}) is adjacent to empty square (${emptySquare})!  id=${id}`)
+            
+            let tempOrderOfTiles = [...orderOfTiles]
+            console.log("temp: ", tempOrderOfTiles)
+            let tempEmptySquare = tempOrderOfTiles[orderOfTiles.indexOf(id)]
+            console.log("pre(index of id): ", tempOrderOfTiles[orderOfTiles.indexOf(id)], orderOfTiles[emptySquare])
+            tempOrderOfTiles[orderOfTiles.indexOf(id)] = orderOfTiles[emptySquare]
+            console.log("post(index of id): ", tempOrderOfTiles[orderOfTiles.indexOf(id)])
+            console.log("pre(index of empty): ", tempOrderOfTiles[emptySquare])
+            tempOrderOfTiles[emptySquare] = tempEmptySquare
+            console.log("final: ", tempOrderOfTiles)
             setEmptySquare(orderOfTiles.indexOf(id))
+            setOrderOfTiles(tempOrderOfTiles)
+            
         }
         else {
             alert(`Tile (${orderOfTiles.indexOf(id)}) not adjacent to empty square (${emptySquare})!  id=${id}`)
